@@ -1,7 +1,7 @@
 # Bastion
 
-resource "yandex_copmute_instance" "bastion" {
-  zone            = var.ya_zone
+resource "yandex_compute_instance" "bastion" {
+  zone            = var.yc_zone
   name            = "bastion"
   hostname        = "bastion"
   platform_id     = "standart-v2"
@@ -15,7 +15,7 @@ resources {
 boot_disk {
   initialize_params {
     size          = 10
-    image_id      = yandex_compute_image.ubuntu20.id
+    image_id      = "fd84d8ve4g091jun43if"
     type          = "network-hdd"
   }
 }
@@ -25,8 +25,8 @@ scheduling_policy {
 }
 
 network_interface {
-  subnet_id = yandex_vpc_subnet-1.id
-  security_group_ids = [yandex_vpc_security_group.bastion-sg.id]
+  subnet_id = yandex_vpc_subnet.net-1.id
+  security_group_ids = [yandex_vpc_security_group.sg-bastion.id]
   nat             = true
 }
 
