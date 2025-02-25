@@ -1,1 +1,5 @@
 terraform.tfvars
+terraform.exe
+LICENSE.txt
+.terraform/
+.terraform.lock.hcl
