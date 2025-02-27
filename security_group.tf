@@ -1,6 +1,6 @@
 resource "yandex_vpc_security_group" "sg-bastion" {
   name        = "sg-bastion"
-  network_id  = yandex_vpc_network.network-1.id
+  network_id  = yandex_vpc_network.net-1.id
 
   egress {
     protocol       = "ANY"

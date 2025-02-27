@@ -4,7 +4,7 @@ resource "yandex_compute_instance" "bastion" {
   zone            = var.yc_zone
   name            = "bastion"
   hostname        = "bastion"
-  platform_id     = "standart-v2"
+  platform_id     = "standard-v2"
 
 resources {
   cores           = 2
@@ -30,8 +30,10 @@ network_interface {
   nat             = true
 }
 
-metadata = {
-  user-data = "${file("./metafiles/meta.yml")}"
-  serial-port-enable = 1
+  metadata = {
+    user-data = templatefile("${path.module}/metafiles/meta.yml", {
+      ssh_public_key = var.ssh_public_key
+    })
+    serial-port-enable = 1
   }
 }
