@@ -3,3 +3,7 @@ terraform.exe
 LICENSE.txt
 .terraform/
 .terraform.lock.hcl
+d
+terraform.tfstate
+terraform.tfstate.backup
+
