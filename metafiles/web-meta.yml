@@ -1,4 +1,4 @@
-#config for web servers
+# Cloud-Config for Web Servers
 
 package_update: true
 package_upgrade: true
@@ -15,3 +15,5 @@ users:
     groups: sudo
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ${ssh_public_key}

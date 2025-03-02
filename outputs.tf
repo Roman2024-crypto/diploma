@@ -12,3 +12,13 @@ output "webservers_statuses" {
   value       = join(", ", yandex_compute_instance_group.webservers.instances[*].status)
   description = "Статусы виртуальных машин в группе Web Servers"
 }
+
+output "elastic_status" {
+  value       = yandex_compute_instance.elastic.status
+  description = "Статус виртуальной машины Elastic"
+}
+
+output "kibana_status" {
+  value       = yandex_compute_instance.kibana.status
+  description = "Статус виртуальной машины Kibana"
+}
