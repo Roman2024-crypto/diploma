@@ -35,6 +35,7 @@ resource "yandex_compute_instance" "kibana" {
 
   metadata = {
     user-data = "${file("./metafiles/meta.yml")}"
+    ssh-keys           = "user:${var.ssh_public_key}"
     serial-port-enable = 1
   }
 }

@@ -1,3 +1,4 @@
+# networks
 locals {
   network_name = "net-1"
 }

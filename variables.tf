@@ -1,3 +1,4 @@
+# variables
 variable "yc_sak" {
   description = "Path to the service account key file"
   type        = string
@@ -32,4 +33,9 @@ variable "ssh_public_key" {
   description = "public SSH key for VM access"
   type        = string
   sensitive   = true
+}
+
+variable "domain" {
+  description = "Domain name for the load balancer"
+  type        = string
 }

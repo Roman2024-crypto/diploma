@@ -1,4 +1,4 @@
-# Zabbix сервер
+# Zabbix
 
 resource "yandex_compute_instance" "zabbix" {
   zone                    = var.yc_zone
@@ -33,6 +33,7 @@ resource "yandex_compute_instance" "zabbix" {
 
   metadata = {
     user-data = "${file("./metafiles/meta.yml")}"
+    ssh-keys               = "user:${var.ssh_public_key}"
     serial-port-enable = 1
   }
 }
