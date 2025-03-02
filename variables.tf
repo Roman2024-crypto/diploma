@@ -1,5 +1,11 @@
-variable "yc_token" {
-  description = "Yandex Cloud OAuth token"
+variable "yc_sak" {
+  description = "Path to the service account key file"
+  type        = string
+  sensitive   = true
+}
+
+variable "yc_service_account_id" {
+  description = "Yandex Cloud Service Account ID"
   type        = string
   sensitive   = true
 }
@@ -22,10 +28,8 @@ variable "yc_zone" {
   default     = "ru-central1-a"
 }
 
-
 variable "ssh_public_key" {
   description = "public SSH key for VM access"
   type        = string
   sensitive   = true
 }
-
