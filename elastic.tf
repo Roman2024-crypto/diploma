@@ -26,7 +26,8 @@ resource "yandex_compute_instance" "elastic" {
 
   network_interface {
     subnet_id             = yandex_vpc_subnet.net-1.id
-    security_group_ids    = [yandex_vpc_security_group.sg-elastic.id, 
+    security_group_ids    = [yandex_vpc_security_group.sg-elastic.id,
+                            yandex_vpc_security_group.sg-zabbix-agent.id, 
                             yandex_vpc_security_group.ssh-from-basion.id]
     ip_address            = "192.168.10.50"                      
     nat                   = false

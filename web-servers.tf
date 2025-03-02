@@ -29,6 +29,10 @@ resource "yandex_compute_instance_group" "webservers" {
             network_id                 = yandex_vpc_network.net-1.id
             subnet_ids                 = [yandex_vpc_subnet.net-1.id,yandex_vpc_subnet.net-2.id]
             nat                        = false
+            security_group_ids = [yandex_vpc_security_group.sg-webservers.id, 
+                            yandex_vpc_security_group.ssh-from-basion.id,
+                            yandex_vpc_security_group.sg-filebeat.id,
+                            yandex_vpc_security_group.sg-zabbix-agent.id]
         }
 
         metadata = {

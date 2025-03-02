@@ -40,7 +40,7 @@ resource "yandex_vpc_security_group" "ssh-from-basion" {
   ingress {
     protocol       = "ICMP"
     description    = "Ping from internal net"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
   }
 }
 
@@ -105,14 +105,14 @@ resource "yandex_vpc_security_group" "sg-elastic" {
   ingress {
     protocol           = "TCP"
     description        = "elastic-ingress"
-    v4_cidr_blocks     = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks     = ["192.168.10.0/24", "192.168.20.0/24"]
     port               = 9200
   }
   
   egress {
     protocol           = "TCP"
     description        = "elastic-egress-to-kibana"
-    v4_cidr_blocks     = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks     = ["192.168.10.0/24", "192.168.20.0/24"]
     port               = 5601
   }
 }
@@ -131,7 +131,7 @@ resource "yandex_vpc_security_group" "sg-kibana" {
   egress {
     protocol       = "TCP"
     description    = "kibana-egress-to-elsatic"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 9200
   }
 
@@ -151,28 +151,73 @@ resource "yandex_vpc_security_group" "sg-filebeat" {
   ingress {
     protocol       = "TCP"
     description    = "filebeat-ingress"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 5044
   }
 
   egress {
     protocol       = "TCP"
     description    = "filebeat-egress-to-logstash"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 5044
   }
 
   egress {
     protocol       = "TCP"
     description    = "filebeat-egress-to-elastic"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 9200
   }
 
   egress {
     protocol       = "TCP"
     description    = "filebeat-egress-to-kibana"
-    v4_cidr_blocks = ["192.168.1.0/24", "192.168.2.0/24"]
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 5601
+  }
+}
+
+resource "yandex_vpc_security_group" "sg-zabbix-server" {
+  name        = "sg-zabbix-server"
+  network_id  = yandex_vpc_network.net-1.id
+  
+  ingress {
+    protocol       = "TCP"
+    description    = "zabbix-server-ingress"
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
+    port           = 10051
+  }
+
+  egress {
+    protocol       = "TCP"
+    description    = "zabbix-server-egress"
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
+    port           = 10050
+  }
+  
+  ingress {
+    protocol       = "TCP"
+    description    = "zabbix-server-webinterface-ingress"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+    port           = 8080
+  }
+}
+
+resource "yandex_vpc_security_group" "sg-zabbix-agent" {
+  name        = "sg-zabbix-agent"
+  network_id  = yandex_vpc_network.net-1.id
+  
+  ingress {
+    protocol       = "TCP"
+    description    = "zabbix-agent-ingress"
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
+    port           = 10050
+  }
+
+  egress {
+    protocol       = "TCP"
+    description    = "zabbix-agent-egress"
+    v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
+    port           = 10051
   }
 }

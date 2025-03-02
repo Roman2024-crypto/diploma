@@ -22,3 +22,8 @@ output "kibana_status" {
   value       = yandex_compute_instance.kibana.status
   description = "Статус виртуальной машины Kibana"
 }
+
+output "zabbix_status" {
+  value       = yandex_compute_instance.zabbix.status
+  description = "Статус виртуальной машины Kibana"
+}
