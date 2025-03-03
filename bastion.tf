@@ -31,9 +31,10 @@ network_interface {
 }
 
   metadata = {
-    user-data = templatefile("${path.module}/metafiles/meta.yml", {
+    user-data = templatefile("${path.module}/metafiles/ansible-meta.yml", {
       ssh_public_key = var.ssh_public_key
     })
     serial-port-enable = 1
   }
+
 }

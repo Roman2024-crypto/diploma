@@ -35,6 +35,7 @@ variable "ssh_public_key" {
   sensitive   = true
 }
 
+
 variable "domain" {
   description = "Domain name for the load balancer"
   type        = string
