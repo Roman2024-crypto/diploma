@@ -1,10 +1,10 @@
-terraform.tfvars
-terraform.exe
-LICENSE.txt
-.terraform/
-.terraform.lock.hcl
-d
-terraform.tfstate
-terraform.tfstate.backup
-authorized_key.json
+Terraform/terraform.tfvars
+Terraform/terraform.exe
+Terraform/LICENSE.txt
+Terraform/.terraform/
+Terraform/.terraform.lock.hcl
+Terraform/d
+Terraform/terraform.tfstate
+Terraform/terraform.tfstate.backup
+Terraform/authorized_key.json
 
