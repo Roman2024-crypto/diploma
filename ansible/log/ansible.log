@@ -1,0 +1,156 @@
+2025-03-03 21:06:38,704 p=18421 u=user n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2025-03-03 21:06:38,705 p=18421 u=user n=ansible | [WARNING]: Found both group and host with same name: kibana
+
+2025-03-03 21:06:38,705 p=18421 u=user n=ansible | [WARNING]: Found both group and host with same name: elastic
+
+2025-03-03 21:06:38,705 p=18421 u=user n=ansible | [WARNING]: Found both group and host with same name: bastion
+
+2025-03-03 21:06:39,020 p=18421 u=user n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: webservers
+
+2025-03-03 21:06:39,020 p=18421 u=user n=ansible | PLAY [Install and configure Nginx] *******************************************************************************************
+2025-03-03 21:06:39,021 p=18421 u=user n=ansible | skipping: no hosts matched
+2025-03-03 21:06:39,021 p=18421 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 21:06:54,109 p=18428 u=user n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2025-03-03 21:06:54,111 p=18428 u=user n=ansible | [WARNING]: Found both group and host with same name: kibana
+
+2025-03-03 21:06:54,111 p=18428 u=user n=ansible | [WARNING]: Found both group and host with same name: bastion
+
+2025-03-03 21:06:54,111 p=18428 u=user n=ansible | [WARNING]: Found both group and host with same name: elastic
+
+2025-03-03 21:06:54,291 p=18428 u=user n=ansible | [WARNING]: Could not match supplied host pattern, ignoring: webservers
+
+2025-03-03 21:06:54,292 p=18428 u=user n=ansible | PLAY [Install and configure Nginx] *******************************************************************************************
+2025-03-03 21:06:54,292 p=18428 u=user n=ansible | skipping: no hosts matched
+2025-03-03 21:06:54,292 p=18428 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 21:09:55,502 p=18483 u=user n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
+
+2025-03-03 21:09:55,503 p=18483 u=user n=ansible | [WARNING]: Found both group and host with same name: elastic
+
+2025-03-03 21:09:55,504 p=18483 u=user n=ansible | [WARNING]: Found both group and host with same name: kibana
+
+2025-03-03 21:09:55,504 p=18483 u=user n=ansible | [WARNING]: Found both group and host with same name: bastion
+
+2025-03-03 21:09:55,560 p=18483 u=user n=ansible | {
+    "_meta": {
+        "hostvars": {
+            "bastion": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            },
+            "elastic": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            },
+            "kibana": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            },
+            "webserver-1": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            },
+            "webserver-2": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            },
+            "zabbix": {
+                "ansible_connection": "ssh",
+                "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -p 22 -i /home/user/.ssh/bastion-new -W %h:%p user@158.160.60.80\"",
+                "ansible_ssh_port": "22",
+                "ansible_user": "user"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "diploma",
+            "ungrouped"
+        ]
+    },
+    "bastion": {
+        "hosts": [
+            "bastion"
+        ]
+    },
+    "diploma": {
+        "children": [
+            "bastion",
+            "elastic",
+            "filebeat_node",
+            "kibana",
+            "webserver",
+            "zabbix-agent",
+            "zabbix-server"
+        ]
+    },
+    "elastic": {
+        "hosts": [
+            "elastic"
+        ]
+    },
+    "filebeat_node": {
+        "hosts": [
+            "webserver-1",
+            "webserver-2"
+        ]
+    },
+    "kibana": {
+        "hosts": [
+            "kibana"
+        ]
+    },
+    "webserver": {
+        "hosts": [
+            "webserver-1",
+            "webserver-2"
+        ]
+    },
+    "zabbix-agent": {
+        "hosts": [
+            "webserver-1",
+            "webserver-2"
+        ]
+    },
+    "zabbix-server": {
+        "hosts": [
+            "zabbix"
+        ]
+    }
+}
+2025-03-03 21:15:06,853 p=18564 u=user n=ansible | PLAY [Install and configure Nginx] *******************************************************************************************
+2025-03-03 21:15:09,314 p=18564 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 21:15:09,316 p=18564 u=user n=ansible | ok: [webserver-2]
+2025-03-03 21:15:10,001 p=18564 u=user n=ansible | ok: [webserver-1]
+2025-03-03 21:15:20,038 p=18564 u=user n=ansible | TASK [nginx : Update apt cache] **********************************************************************************************
+2025-03-03 21:15:20,038 p=18564 u=user n=ansible | changed: [webserver-2]
+2025-03-03 21:15:22,340 p=18564 u=user n=ansible | changed: [webserver-1]
+2025-03-03 21:15:33,503 p=18564 u=user n=ansible | TASK [nginx : Install Nginx] *************************************************************************************************
+2025-03-03 21:15:33,503 p=18564 u=user n=ansible | changed: [webserver-2]
+2025-03-03 21:15:43,256 p=18564 u=user n=ansible | changed: [webserver-1]
+2025-03-03 21:15:44,219 p=18564 u=user n=ansible | TASK [nginx : Ensure Nginx is running and enabled] ***************************************************************************
+2025-03-03 21:15:44,220 p=18564 u=user n=ansible | ok: [webserver-2]
+2025-03-03 21:15:44,333 p=18564 u=user n=ansible | ok: [webserver-1]
+2025-03-03 21:15:45,691 p=18564 u=user n=ansible | TASK [nginx : Create a simple index.html] ************************************************************************************
+2025-03-03 21:15:45,692 p=18564 u=user n=ansible | changed: [webserver-2]
+2025-03-03 21:15:45,710 p=18564 u=user n=ansible | changed: [webserver-1]
+2025-03-03 21:15:46,890 p=18564 u=user n=ansible | TASK [nginx : Copy Nginx configuration] **************************************************************************************
+2025-03-03 21:15:46,891 p=18564 u=user n=ansible | changed: [webserver-2]
+2025-03-03 21:15:46,926 p=18564 u=user n=ansible | changed: [webserver-1]
+2025-03-03 21:15:47,809 p=18564 u=user n=ansible | RUNNING HANDLER [nginx : Restart Nginx] **************************************************************************************
+2025-03-03 21:15:47,809 p=18564 u=user n=ansible | changed: [webserver-2]
+2025-03-03 21:15:47,903 p=18564 u=user n=ansible | changed: [webserver-1]
+2025-03-03 21:15:47,916 p=18564 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 21:15:47,916 p=18564 u=user n=ansible | webserver-1                : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 21:15:47,917 p=18564 u=user n=ansible | webserver-2                : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
