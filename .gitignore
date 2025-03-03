@@ -7,4 +7,9 @@ Terraform/d
 Terraform/terraform.tfstate
 Terraform/terraform.tfstate.backup
 Terraform/authorized_key.json
+ansible/log/
+README.md
+Ansible/role/nginx/vars/
+Ansible/role/nginx/.travis.yml
+Ansible/role/nginx/README.md
 
