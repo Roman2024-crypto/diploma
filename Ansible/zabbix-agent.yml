@@ -1,0 +1,9 @@
+---
+- hosts: zabbix_agents
+  remote_user: user
+  become: yes
+  become_method: sudo
+  vars:
+    zabbix_server: zabbix-server.ru-central1.internal
+  roles:
+    - zabbix-agent

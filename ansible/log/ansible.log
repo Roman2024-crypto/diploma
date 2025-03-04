@@ -154,3 +154,193 @@
 2025-03-03 21:15:47,916 p=18564 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
 2025-03-03 21:15:47,916 p=18564 u=user n=ansible | webserver-1                : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2025-03-03 21:15:47,917 p=18564 u=user n=ansible | webserver-2                : ok=7    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:00:05,272 p=19518 u=user n=ansible | ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  found unacceptable key (unhashable type: 'AnsibleMapping')
+
+The error appears to be in '/home/user/diploma/Ansible/roles/nginx/tasks/main.yml': line 21, column 18, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    content: "Hello, this is {{ inventory_hostname }}"
+    IP address: {{ ansible_default_ipv4.address }}
+                 ^ here
+We could be wrong, but this one looks like it might be an issue with
+missing quotes. Always quote template expression brackets when they
+start a value. For instance:
+
+    with_items:
+      - {{ foo }}
+
+Should be written as:
+
+    with_items:
+      - "{{ foo }}"
+
+2025-03-03 22:04:05,390 p=19587 u=user n=ansible | PLAY [Install and configure Nginx] *******************************************************************************************
+2025-03-03 22:04:07,605 p=19587 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 22:04:07,606 p=19587 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:04:08,243 p=19587 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:04:18,654 p=19587 u=user n=ansible | TASK [nginx : Update apt cache] **********************************************************************************************
+2025-03-03 22:04:18,655 p=19587 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:04:20,432 p=19587 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:04:22,141 p=19587 u=user n=ansible | TASK [nginx : Install Nginx] *************************************************************************************************
+2025-03-03 22:04:22,141 p=19587 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:04:23,659 p=19587 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:04:24,734 p=19587 u=user n=ansible | TASK [nginx : Ensure Nginx is running and enabled] ***************************************************************************
+2025-03-03 22:04:24,734 p=19587 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:04:24,745 p=19587 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:04:26,152 p=19587 u=user n=ansible | TASK [nginx : Create a simple index.html] ************************************************************************************
+2025-03-03 22:04:26,153 p=19587 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:04:26,172 p=19587 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:04:27,297 p=19587 u=user n=ansible | TASK [nginx : Copy Nginx configuration] **************************************************************************************
+2025-03-03 22:04:27,298 p=19587 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:04:27,312 p=19587 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:04:27,358 p=19587 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 22:04:27,358 p=19587 u=user n=ansible | webserver-1                : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:04:27,359 p=19587 u=user n=ansible | webserver-2                : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:09:43,940 p=19983 u=user n=ansible | PLAY [Install and configure Nginx] *******************************************************************************************
+2025-03-03 22:09:46,110 p=19983 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 22:09:46,111 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:46,326 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:49,569 p=19983 u=user n=ansible | TASK [nginx : Update apt cache] **********************************************************************************************
+2025-03-03 22:09:49,570 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:50,144 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:51,956 p=19983 u=user n=ansible | TASK [nginx : Install Nginx] *************************************************************************************************
+2025-03-03 22:09:51,956 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:52,301 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:53,458 p=19983 u=user n=ansible | TASK [nginx : Ensure Nginx is running and enabled] ***************************************************************************
+2025-03-03 22:09:53,458 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:53,501 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:54,663 p=19983 u=user n=ansible | TASK [nginx : Create a simple index.html] ************************************************************************************
+2025-03-03 22:09:54,664 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:54,817 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:55,837 p=19983 u=user n=ansible | TASK [nginx : Copy Nginx configuration] **************************************************************************************
+2025-03-03 22:09:55,838 p=19983 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:09:55,977 p=19983 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:09:56,020 p=19983 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 22:09:56,020 p=19983 u=user n=ansible | webserver-1                : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:09:56,021 p=19983 u=user n=ansible | webserver-2                : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:19:31,374 p=20636 u=user n=ansible | ERROR! - the directory ./roles/zabbix-server already exists. You can use --force to re-initialize this directory,
+however it will reset any main.yml files that may have
+been modified there already.
+2025-03-03 22:19:51,741 p=20656 u=user n=ansible | - Role roles/zabbix-server was created successfully
+2025-03-03 22:20:05,082 p=20669 u=user n=ansible | - Role roles/zabbix-agent was created successfully
+2025-03-03 22:29:18,155 p=21048 u=user n=ansible | PLAY [zabbix_servers] ********************************************************************************************************
+2025-03-03 22:29:20,240 p=21048 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 22:29:20,241 p=21048 u=user n=ansible | ok: [zabbix]
+2025-03-03 22:29:20,854 p=21048 u=user n=ansible | TASK [zabbix-server : ping server] *******************************************************************************************
+2025-03-03 22:29:20,855 p=21048 u=user n=ansible | ok: [zabbix]
+2025-03-03 22:29:32,520 p=21048 u=user n=ansible | TASK [zabbix-server : download and install the zabbix package] ***************************************************************
+2025-03-03 22:29:32,521 p=21048 u=user n=ansible | fatal: [zabbix]: FAILED! => {"changed": false, "msg": "Failure downloading https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu20.04_all.deb, Request failed: <urlopen error [Errno 101] Network is unreachable>"}
+2025-03-03 22:29:32,523 p=21048 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 22:29:32,523 p=21048 u=user n=ansible | zabbix                     : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:29:57,086 p=21121 u=user n=ansible | PLAY [zabbix_agents] *********************************************************************************************************
+2025-03-03 22:29:59,325 p=21121 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 22:29:59,326 p=21121 u=user n=ansible | ok: [webserver-1]
+2025-03-03 22:29:59,343 p=21121 u=user n=ansible | ok: [webserver-2]
+2025-03-03 22:30:08,194 p=21121 u=user n=ansible | TASK [zabbix-agent : Install zabbix-agent] ***********************************************************************************
+2025-03-03 22:30:08,195 p=21121 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:30:18,675 p=21121 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:30:19,458 p=21121 u=user n=ansible | TASK [zabbix-agent : Replace zabbix-agent configuration] *********************************************************************
+2025-03-03 22:30:19,458 p=21121 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:30:19,466 p=21121 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:30:20,113 p=21121 u=user n=ansible | TASK [zabbix-agent : Update zabbix-agent configuration] **********************************************************************
+2025-03-03 22:30:20,114 p=21121 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:30:20,191 p=21121 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:30:21,431 p=21121 u=user n=ansible | TASK [zabbix-agent : Enable and restart zabbix-agent] ************************************************************************
+2025-03-03 22:30:21,432 p=21121 u=user n=ansible | changed: [webserver-2]
+2025-03-03 22:30:21,578 p=21121 u=user n=ansible | changed: [webserver-1]
+2025-03-03 22:30:21,629 p=21121 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 22:30:21,629 p=21121 u=user n=ansible | webserver-1                : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 22:30:21,630 p=21121 u=user n=ansible | webserver-2                : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 23:18:38,950 p=21748 u=user n=ansible | PLAY [zabbix_servers] ********************************************************************************************************
+2025-03-03 23:18:44,388 p=21748 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 23:18:44,389 p=21748 u=user n=ansible | fatal: [zabbix]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: user@zabbix: Permission denied (publickey).", "unreachable": true}
+2025-03-03 23:18:44,391 p=21748 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 23:18:44,391 p=21748 u=user n=ansible | zabbix                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 23:21:19,418 p=21828 u=user n=ansible | PLAY [zabbix_servers] ********************************************************************************************************
+2025-03-03 23:21:23,634 p=21828 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 23:21:23,638 p=21828 u=user n=ansible | fatal: [zabbix]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: user@zabbix: Permission denied (publickey).", "unreachable": true}
+2025-03-03 23:21:23,639 p=21828 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 23:21:23,639 p=21828 u=user n=ansible | zabbix                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 23:22:48,114 p=21876 u=user n=ansible | PLAY [zabbix_servers] ********************************************************************************************************
+2025-03-03 23:22:50,258 p=21876 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 23:22:50,259 p=21876 u=user n=ansible | ok: [zabbix]
+2025-03-03 23:22:50,816 p=21876 u=user n=ansible | TASK [zabbix-server : ping server] *******************************************************************************************
+2025-03-03 23:22:50,816 p=21876 u=user n=ansible | ok: [zabbix]
+2025-03-03 23:23:00,800 p=21876 u=user n=ansible | TASK [zabbix-server : download and install the zabbix package] ***************************************************************
+2025-03-03 23:23:00,801 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:25:20,454 p=21876 u=user n=ansible | TASK [zabbix-server : update apt packages] ***********************************************************************************
+2025-03-03 23:25:20,454 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:26:31,188 p=21876 u=user n=ansible | TASK [zabbix-server : install zabbix] ****************************************************************************************
+2025-03-03 23:26:31,188 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:28:15,328 p=21876 u=user n=ansible | TASK [zabbix-server : install mysql] *****************************************************************************************
+2025-03-03 23:28:15,328 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:28:18,935 p=21876 u=user n=ansible | TASK [zabbix-server : enable and reload mysql] *******************************************************************************
+2025-03-03 23:28:18,936 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:28:19,551 p=21876 u=user n=ansible | TASK [zabbix-server : create mysql user] *************************************************************************************
+2025-03-03 23:28:19,552 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:28:20,102 p=21876 u=user n=ansible | TASK [zabbix-server : create mysql database] *********************************************************************************
+2025-03-03 23:28:20,102 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:28:20,621 p=21876 u=user n=ansible | TASK [zabbix-server : search for server.sql] *********************************************************************************
+2025-03-03 23:28:20,621 p=21876 u=user n=ansible | ok: [zabbix]
+2025-03-03 23:28:21,334 p=21876 u=user n=ansible | TASK [zabbix-server : extract .gz into /tmp] *********************************************************************************
+2025-03-03 23:28:21,335 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:12,804 p=21876 u=user n=ansible | TASK [zabbix-server : import preset (will not be executed if server.sql existed before Extracting)] **************************
+2025-03-03 23:31:12,805 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:13,364 p=21876 u=user n=ansible | TASK [zabbix-server : set new database password for mysql database] **********************************************************
+2025-03-03 23:31:13,365 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:14,632 p=21876 u=user n=ansible | TASK [zabbix-server : replace zabbix config] *********************************************************************************
+2025-03-03 23:31:14,633 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:16,157 p=21876 u=user n=ansible | TASK [zabbix-server : enable and restart zabbix-server] **********************************************************************
+2025-03-03 23:31:16,157 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:17,096 p=21876 u=user n=ansible | TASK [zabbix-server : enable and restart zabbix-agent] ***********************************************************************
+2025-03-03 23:31:17,097 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:17,808 p=21876 u=user n=ansible | TASK [zabbix-server : enable and restart nginx] ******************************************************************************
+2025-03-03 23:31:17,809 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:18,581 p=21876 u=user n=ansible | TASK [zabbix-server : enable and restart php] ********************************************************************************
+2025-03-03 23:31:18,582 p=21876 u=user n=ansible | changed: [zabbix]
+2025-03-03 23:31:18,616 p=21876 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 23:31:18,617 p=21876 u=user n=ansible | zabbix                     : ok=18   changed=15   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 23:31:47,130 p=22116 u=user n=ansible | PLAY [zabbix_agents] *********************************************************************************************************
+2025-03-03 23:31:49,435 p=22116 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-03 23:31:49,437 p=22116 u=user n=ansible | ok: [webserver-1]
+2025-03-03 23:31:49,703 p=22116 u=user n=ansible | ok: [webserver-2]
+2025-03-03 23:31:51,793 p=22116 u=user n=ansible | TASK [zabbix-agent : Install zabbix-agent] ***********************************************************************************
+2025-03-03 23:31:51,793 p=22116 u=user n=ansible | ok: [webserver-1]
+2025-03-03 23:31:55,456 p=22116 u=user n=ansible | ok: [webserver-2]
+2025-03-03 23:31:56,165 p=22116 u=user n=ansible | TASK [zabbix-agent : Replace zabbix-agent configuration] *********************************************************************
+2025-03-03 23:31:56,165 p=22116 u=user n=ansible | ok: [webserver-2]
+2025-03-03 23:31:56,231 p=22116 u=user n=ansible | ok: [webserver-1]
+2025-03-03 23:31:56,761 p=22116 u=user n=ansible | TASK [zabbix-agent : Update zabbix-agent configuration] **********************************************************************
+2025-03-03 23:31:56,761 p=22116 u=user n=ansible | ok: [webserver-1]
+2025-03-03 23:31:56,804 p=22116 u=user n=ansible | ok: [webserver-2]
+2025-03-03 23:31:57,893 p=22116 u=user n=ansible | TASK [zabbix-agent : Enable and restart zabbix-agent] ************************************************************************
+2025-03-03 23:31:57,894 p=22116 u=user n=ansible | changed: [webserver-1]
+2025-03-03 23:31:57,963 p=22116 u=user n=ansible | changed: [webserver-2]
+2025-03-03 23:31:58,010 p=22116 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-03 23:31:58,011 p=22116 u=user n=ansible | webserver-1                : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-03 23:31:58,011 p=22116 u=user n=ansible | webserver-2                : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-04 12:44:26,829 p=29040 u=user n=ansible | PLAY [zabbix_agents] *********************************************************************************************************
+2025-03-04 12:44:29,064 p=29040 u=user n=ansible | TASK [Gathering Facts] *******************************************************************************************************
+2025-03-04 12:44:29,065 p=29040 u=user n=ansible | ok: [webserver-2]
+2025-03-04 12:44:29,164 p=29040 u=user n=ansible | ok: [webserver-1]
+2025-03-04 12:44:31,433 p=29040 u=user n=ansible | TASK [zabbix-agent : Install zabbix-agent] ***********************************************************************************
+2025-03-04 12:44:31,434 p=29040 u=user n=ansible | ok: [webserver-1]
+2025-03-04 12:44:31,442 p=29040 u=user n=ansible | ok: [webserver-2]
+2025-03-04 12:44:32,153 p=29040 u=user n=ansible | TASK [zabbix-agent : Replace zabbix-agent configuration] *********************************************************************
+2025-03-04 12:44:32,153 p=29040 u=user n=ansible | ok: [webserver-1]
+2025-03-04 12:44:32,257 p=29040 u=user n=ansible | ok: [webserver-2]
+2025-03-04 12:44:32,778 p=29040 u=user n=ansible | TASK [zabbix-agent : Update zabbix-agent configuration] **********************************************************************
+2025-03-04 12:44:32,778 p=29040 u=user n=ansible | ok: [webserver-1]
+2025-03-04 12:44:32,887 p=29040 u=user n=ansible | ok: [webserver-2]
+2025-03-04 12:44:34,052 p=29040 u=user n=ansible | TASK [zabbix-agent : Enable and restart zabbix-agent] ************************************************************************
+2025-03-04 12:44:34,053 p=29040 u=user n=ansible | changed: [webserver-2]
+2025-03-04 12:44:34,112 p=29040 u=user n=ansible | changed: [webserver-1]
+2025-03-04 12:44:34,163 p=29040 u=user n=ansible | PLAY RECAP *******************************************************************************************************************
+2025-03-04 12:44:34,163 p=29040 u=user n=ansible | webserver-1                : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-03-04 12:44:34,163 p=29040 u=user n=ansible | webserver-2                : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
