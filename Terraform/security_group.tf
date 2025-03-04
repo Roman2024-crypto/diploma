@@ -115,6 +115,15 @@ resource "yandex_vpc_security_group" "sg-elastic" {
     v4_cidr_blocks     = ["192.168.10.0/24", "192.168.20.0/24"]
     port               = 5601
   }
+
+  egress {
+    protocol           = "ANY"
+    description        = "any"
+    v4_cidr_blocks     = ["0.0.0.0/0"]
+    from_port          = 1
+    to_port            = 65535
+  }
+
 }
 
 resource "yandex_vpc_security_group" "sg-kibana" {
@@ -175,6 +184,15 @@ resource "yandex_vpc_security_group" "sg-filebeat" {
     v4_cidr_blocks = ["192.168.10.0/24", "192.168.20.0/24"]
     port           = 5601
   }
+
+  egress {
+    protocol           = "ANY"
+    description        = "any"
+    v4_cidr_blocks     = ["0.0.0.0/0"]
+    from_port          = 1
+    to_port            = 65535
+  }
+
 }
 
 resource "yandex_vpc_security_group" "sg-zabbix-server" {
@@ -201,6 +219,15 @@ resource "yandex_vpc_security_group" "sg-zabbix-server" {
     v4_cidr_blocks = ["0.0.0.0/0"]
     port           = 8080
   }
+
+  egress {
+    protocol           = "ANY"
+    description        = "any"
+    v4_cidr_blocks     = ["0.0.0.0/0"]
+    from_port          = 1
+    to_port            = 65535
+  }
+
 }
 
 resource "yandex_vpc_security_group" "sg-zabbix-agent" {
