@@ -40,6 +40,7 @@
 
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/terraform.png)
 
+Список серверов и сетей
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/servers.png)
 
 
@@ -70,14 +71,17 @@
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/WebServersGroup.png)
 
 Доступ к ВМ по ssh через бастион-сервер
-
+Web1
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/SSH-to-web1.png)
 
+Web2
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/SSH-to-web2.png)
+
 
 Веб сервера Nginx доступны через балансировщика по адрессу - http://158.160.147.226/
 
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/webserver-balans1.png)
+
 
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/webserver-balans2.png)
 
@@ -136,7 +140,10 @@ Kibana с подлюченным Elasticsearch доступна по ссылк�
 Развернута одна VPC. Cервера web, Elasticsearch помещены в приватные сети.
 Сервера Zabbix, Kibana, application load balancer определены в публичные подсеть.
 
+Информация о VPC
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/vpc.png)
+
+Список серверов и подсетей.
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/servers.png)
 
 Bastion сервер настроен в качестве Jump host. Настроена [ProxyCommand].
