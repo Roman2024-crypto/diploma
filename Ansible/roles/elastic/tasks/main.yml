@@ -1,0 +1,21 @@
+---
+- name: ping server
+  ping:
+
+- name: Download and install Elasticsearch
+  apt:
+    deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/e/elasticsearch/elasticsearch-7.17.14-amd64.deb
+
+- name: Copy Elasticsearch configuration
+  copy:
+    src: elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: elasticsearch
+    group: elasticsearch
+    mode: '0644'
+
+- name: Enable and restart Elasticsearch
+  systemd:
+    name: elasticsearch
+    enabled: yes
+    state: restarted

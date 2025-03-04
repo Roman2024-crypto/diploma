@@ -1,0 +1,21 @@
+---
+- name: ping server
+  ping:
+
+- name: Download and install Kibana
+  apt:
+    deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/k/kibana/kibana-7.17.14-amd64.deb
+
+- name: Copy Kibana configuration
+  copy:
+    src: kibana.yml
+    dest: /etc/kibana/kibana.yml
+    owner: kibana
+    group: kibana
+    mode: '0644'
+
+- name: Enable and restart Kibana
+  systemd:
+    name: kibana
+    enabled: yes
+    state: restarted

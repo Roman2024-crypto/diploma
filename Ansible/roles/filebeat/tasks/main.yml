@@ -1,0 +1,21 @@
+---
+- name: ping server
+  ping:
+
+- name: Install Filebeat
+  apt:
+    deb: https://mirror.yandex.ru/mirrors/elastic/7/pool/main/f/filebeat/filebeat-7.17.14-amd64.deb
+
+- name: Copy Filebeat configuration
+  copy:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable and restart Filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: restarted
