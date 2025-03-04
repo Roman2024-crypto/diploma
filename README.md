@@ -71,7 +71,9 @@
 
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/WebServersGroup.png)
 
-Доступ к ВМ по ssh через бастион-сервер
+Доступ к ВМ по ssh через Bastions
+
+
 Web1
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/SSH-to-web1.png)
 
@@ -81,12 +83,15 @@ Web2
 
 Веб сервера Nginx доступны через балансировщика по адрессу - http://158.160.147.226/
 
+
+server-1
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/webserver-balans1.png)
 
 
+server-2
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/webserver-balans2.png)
 
-Балансировщик
+
 
 Создана Target Group
 
@@ -134,11 +139,12 @@ Kibana с подлюченным Elasticsearch доступна по ссылк�
 
 Настройте [Security Groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups) соответствующих сервисов на входящий трафик только к нужным портам.
 
-Настройте ВМ с публичным адресом, в которой будет открыт только один порт — ssh.  Эта вм будет реализовывать концепцию  [bastion host]( https://cloud.yandex.ru/docs/tutorials/routing/bastion) . Синоним "bastion host" - "Jump host". Подключение  ansible к серверам web и Elasticsearch через данный bastion host можно сделать с помощью  [ProxyCommand](https://docs.ansible.com/ansible/latest/network/user_guide/network_debug_troubleshooting.html#network-delegate-to-vs-proxycommand) . Допускается установка и запуск ansible непосредственно на bastion host.(Этот вариант легче в настройке)
+Настройте ВМ с публичным адресом, в которой будет открыт только один порт — ssh.  Эта вм будет реализовывать концепцию  [bastion host]( https://cloud.yandex.ru/docs/tutorials/routing/bastion) . Синоним "bastion host" - "Jump host". Подключение  ansible к серверам web и Elasticsearch через данный bastion host можно сделать с помощью  [ProxyCommand](https://docs.ansible.com/ansible/latest/network/user_guide/network_debug_troubleshooting.html#network-delegate-to-vs-proxycommand). Допускается установка и запуск ansible непосредственно на bastion host.(Этот вариант легче в настройке)
 
 ### Решение
 
-Развернута одна VPC. Cервера web, Elasticsearch помещены в приватные сети.
+Развернута одна VPC. 
+Cервера web, Elasticsearch помещены в приватные сети.
 Сервера Zabbix, Kibana, application load balancer определены в публичные подсеть.
 
 Информация о VPC
@@ -150,13 +156,13 @@ Kibana с подлюченным Elasticsearch доступна по ссылк�
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/Servers.png)
 
 Bastion сервер настроен в качестве Jump host. Настроена [ProxyCommand].
-Конфигуррация групп  доступа доступна тут - https://github.com/Roman2024-crypto/diploma/blob/Production/Terraform/security_group.tf (Ветка Production).
+Конфигуррация групп  доступа доступна тут - https://github.com/Roman2024-crypto/diploma/blob/Production/Terraform/security_group.tf
 
 ### Резервное копирование
 Cоздайте snapshot дисков всех ВМ. Ограничьте время жизни snaphot в неделю. Сами snaphot настройте на ежедневное копирование.
 
 ### Решение
-Снапшоты управляются политикой Terraform - https://github.com/Roman2024-crypto/diploma/blob/Production/Terraform/snapshot.tf (Ветка Production).
+Снапшоты управляются политикой Terraform - https://github.com/Roman2024-crypto/diploma/blob/Production/Terraform/snapshot.tf
 
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/snapshots.png)
 
