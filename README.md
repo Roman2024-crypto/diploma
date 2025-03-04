@@ -81,8 +81,7 @@ Web2
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/SSH-to-web2.png)
 
 
-Веб сервера Nginx доступны через балансировщика по адрессу - http://158.160.147.226/
-
+Веб сервера Nginx доступны через балансировщика по адрессу - http://158.160.147.226
 
 server-1
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/webserver-balans1.png)
