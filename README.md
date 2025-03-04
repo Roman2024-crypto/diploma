@@ -41,7 +41,8 @@
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/terraform.png)
 
 Список серверов и сетей
-![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/servers.png)
+
+![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/Servers.png)
 
 
 ### Сайт
@@ -141,10 +142,12 @@ Kibana с подлюченным Elasticsearch доступна по ссылк�
 Сервера Zabbix, Kibana, application load balancer определены в публичные подсеть.
 
 Информация о VPC
+
 ![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/vpc.png)
 
 Список серверов и подсетей.
-![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/servers.png)
+
+![img](https://github.com/Roman2024-crypto/diploma/blob/Production/images/Servers.png)
 
 Bastion сервер настроен в качестве Jump host. Настроена [ProxyCommand].
 Конфигуррация групп  доступа доступна тут - https://github.com/Roman2024-crypto/diploma/blob/Production/Terraform/security_group.tf (Ветка Production).
